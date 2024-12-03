@@ -9,7 +9,6 @@ Future<int> run() async {
 
   var sum = 0;
   for (final x in muls) {
-    // print(x);
     sum += x.$1 * x.$2;
   }
 
@@ -18,7 +17,18 @@ Future<int> run() async {
 
 Iterable<(int, int)> findMul(String text, int idx) sync* {
   final len = text.length;
+
+  // part 2
+  bool go = true;
+
   while (idx < len - 3) {
+    if (text[idx] == "d" && text[idx+1] == "o" && text[idx+2] == "(" && text[idx+3] == ")") {
+      go = true;
+    }
+    else if (text[idx] == "d" && text[idx+1] == "o" && text[idx+2] == "n" && text[idx+3] == "'" && text.length > idx+6 && text[idx+4] == "t" && text[idx+5] == "(" && text[idx+6] == ")") {
+      go = false;
+    }
+
     if (text[idx] == "m" && text[idx+1] == "u" && text[idx+2] == "l" && text[idx+3] == "(") {
       // candidate
 
@@ -41,7 +51,7 @@ Iterable<(int, int)> findMul(String text, int idx) sync* {
 
       var potential = validSeq(buffer.toString());
 
-      if (potential != null) {
+      if (go && potential != null) {
         yield potential;
       }
     }
@@ -74,7 +84,7 @@ Iterable<(int, int)> findMul(String text, int idx) sync* {
 }
 const valid = '0123456789,)';
 
-Future<String> ti() => Future.value('xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))');
+Future<String> ti() => Future.value("xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))");
 
 Future<String> inp() {
   final file = File('lib/d03.in');
