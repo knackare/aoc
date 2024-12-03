@@ -1,8 +1,8 @@
-import 'package:aoc/d02.dart' as aoc;
+import 'package:aoc/d03.dart' as aoc;
 
-void main(List<String> arguments) {
+void main(List<String> arguments) async {
   const String reset = '\x1B[0m';
   const String green = '\x1B[32m';
 
-  print('$green${aoc.run()}$reset');
+  print('$green${await aoc.run()}$reset');
 }
