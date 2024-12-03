@@ -5,7 +5,7 @@ Future<int> run() async {
 
   print(input);
 
-  var muls = findMul(input, 0);
+  var muls = findMul(input);
 
   var sum = 0;
   for (final x in muls) {
@@ -15,21 +15,34 @@ Future<int> run() async {
   return sum;
 }
 
-Iterable<(int, int)> findMul(String text, int idx) sync* {
+Iterable<(int, int)> findMul(String text) sync* {
   final len = text.length;
+  var idx = 0;
 
   // part 2
   bool go = true;
 
   while (idx < len - 3) {
-    if (text[idx] == "d" && text[idx+1] == "o" && text[idx+2] == "(" && text[idx+3] == ")") {
+    if (    text[idx] == "d" &&
+        text[idx + 1] == "o" &&
+        text[idx + 2] == "(" &&
+        text[idx + 3] == ")") {
       go = true;
-    }
-    else if (text[idx] == "d" && text[idx+1] == "o" && text[idx+2] == "n" && text[idx+3] == "'" && text.length > idx+6 && text[idx+4] == "t" && text[idx+5] == "(" && text[idx+6] == ")") {
+    } else if (text.length > idx + 6 &&
+            text[idx] == "d" &&
+        text[idx + 1] == "o" &&
+        text[idx + 2] == "n" &&
+        text[idx + 3] == "'" &&
+        text[idx + 4] == "t" &&
+        text[idx + 5] == "(" &&
+        text[idx + 6] == ")") {
       go = false;
     }
 
-    if (text[idx] == "m" && text[idx+1] == "u" && text[idx+2] == "l" && text[idx+3] == "(") {
+    if (text[idx] == "m" &&
+        text[idx + 1] == "u" &&
+        text[idx + 2] == "l" &&
+        text[idx + 3] == "(") {
       // candidate
 
       if (idx + 7 > len) {
@@ -70,10 +83,11 @@ Iterable<(int, int)> findMul(String text, int idx) sync* {
   var first = int.tryParse(parts[0]);
   if (first == null) return null;
 
-  if (parts[1][parts[1].length-1] != ')') return null;
+  if (parts[1][parts[1].length - 1] != ')') return null;
 
   var parts2 = parts[1].split(')');
 
+  // hack ["4", ""]
   if (parts2.length != 2 && parts2[1] != '') return null;
 
   var second = int.tryParse(parts2[0]);
@@ -82,9 +96,9 @@ Iterable<(int, int)> findMul(String text, int idx) sync* {
 
   return (first, second);
 }
-const valid = '0123456789,)';
 
-Future<String> ti() => Future.value("xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))");
+Future<String> ti() => Future.value(
+    "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))");
 
 Future<String> inp() {
   final file = File('lib/d03.in');
