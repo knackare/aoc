@@ -13,13 +13,17 @@ int run() {
 
   for (var i = 0; i < size; i++) {
     for (var j = 0; j < size; j++) {
-      var perm = map.toList();
-      final String p = perm[i][j];
-      if (!(p == "^" || p == "v" || p == "<" || p == ">")) {
-        var whereIsMyArray = perm[i].split("");
-        whereIsMyArray.replaceRange(j, j+1, ["#"]);
-        perm[i] = whereIsMyArray.join();
+      final String p = map[i][j];
+
+      if (p == "#" || p == "^" || p == "v" || p == "<" || p == ">") {
+        continue;
       }
+
+      var perm = map.toList();
+
+      var whereIsMyArray = perm[i].split("");
+      whereIsMyArray.replaceRange(j, j+1, ["#"]);
+      perm[i] = whereIsMyArray.join();
 
       if (solve(perm) == -1) {
         loops++;
