@@ -2,7 +2,7 @@
 
 int run() {
   var ls = LineSplitter();
-  var vals = ls.convert(inp);
+  var vals = ls.convert(ti);
 
   for (var val in vals) {
     print(val);
