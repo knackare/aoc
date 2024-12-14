@@ -64,11 +64,7 @@ Iterable<List<int>> combinations(int len) => combs(len, []);
 Iterable<List<int>> combs(int len, List<int> acc) {
   if (len == 0) return [acc];
 
-  return [0, 1, 2].expand((x) {
-    var b = acc.toList();
-    b.add(x);
-    return combs(len - 1, b);
-  });
+  return [0, 1, 2].expand((x) => combs(len - 1, [x, ...acc]));
 }
 
 var ti = '''
