@@ -1,4 +1,4 @@
-import 'package:aoc/d07.dart' as aoc;
+import 'package:aoc/d08.dart' as aoc;
 
 void main(List<String> arguments) async {
   const String reset = '\x1B[0m';
