@@ -11,7 +11,7 @@ int run() {
 
     var len = foo.$2.length - 1;
 
-    var combs = combinations(len, []).toList();
+    var combs = combinations(len).toList();
     var ans = foo.$1;
     var vals = foo.$2;
 
@@ -61,24 +61,15 @@ int run() {
 //   end
 // end
 
-Iterable<List<int>> combinations(int len, List<int> acc) {
+Iterable<List<int>> combinations(int len) => combs(len, []);
+Iterable<List<int>> combs(int len, List<int> acc) {
   if (len == 0) return [acc];
 
   return [0, 1, 2].expand((x) {
     var b = acc.toList();
     b.add(x);
-    return combinations(len - 1, b);
+    return combs(len - 1, b);
   });
-}
-
-int pow(int val, int len) {
-  var sum = 0;
-
-  for (var i = 1; i < len; i++) {
-    sum += val * val;
-  }
-
-  return sum;
 }
 
 var ti = '''
