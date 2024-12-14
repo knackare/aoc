@@ -1,12 +1,11 @@
-﻿import 'dart:convert';
+﻿import 'package:aoc/halp.dart' as h;
 
 int run() {
-  var ls = LineSplitter();
-  var vals = ls.convert(inp);
+  var rows = h.rows(inp);
 
   List<(int, List<int>)> eqs = [];
-  for (var val in vals) {
-    var p1 = val.split(': ');
+  for (var row in rows) {
+    var p1 = row.split(': ');
     var foo = (int.parse(p1[0]), p1[1].split(' ').map(int.parse).toList());
 
     var len = foo.$2.length - 1;

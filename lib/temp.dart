@@ -1,11 +1,10 @@
-﻿import 'dart:convert';
+﻿import 'package:aoc/halp.dart' as h;
 
 int run() {
-  var ls = LineSplitter();
-  var vals = ls.convert(ti);
+  var rows = h.rows(ti);
 
-  for (var val in vals) {
-    print(val);
+  for (var row in rows) {
+    print(row);
   }
 
   var sum = 0;
