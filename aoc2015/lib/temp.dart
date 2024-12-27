@@ -1,7 +1,7 @@
 ﻿import 'package:aoc2015/halp.dart' as h;
 
 int run() {
-  var rows = h.rows(ti);
+  var rows = h.rows(test);
 
   for (var row in rows) {
     print(row);
@@ -12,9 +12,9 @@ int run() {
   return sum;
 }
 
-var ti = '''
+var test = '''
 
 ''';
 
-var inp = '''
+var input = '''
 ''';
