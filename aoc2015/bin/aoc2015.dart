@@ -1,5 +1,8 @@
-import 'package:aoc2015/aoc2015.dart' as aoc2015;
+import 'package:aoc2015/d01.dart' as aoc;
 
-void main(List<String> arguments) {
-  print('Hello world: ${aoc2015.calculate()}!');
+void main(List<String> arguments) async {
+  const String reset = '\x1B[0m';
+  const String green = '\x1B[32m';
+
+  print('$green${await aoc.run()}$reset');
 }
