@@ -1,1 +1,4 @@
 # aoc
+
+Advent of code.
+
